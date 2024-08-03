@@ -18,7 +18,9 @@ Tested 6 people party in IV, the third cave crashes the game in an event.
 Install the apk for android or extract the windows folder and run the .exe.
 
 # Credits
-Based on the work from:
+The goal of this project is to enhance Shiriow's save editor and add some missing options. Adding a GUI to make the editor more accessible and make it possible to run on Android. The backend code is based on the work of Shiriow.
+
+You can find Shiriow's save editor here:
 
 https://github.com/Shiriow/EO-SimpleSaveEditor
 
