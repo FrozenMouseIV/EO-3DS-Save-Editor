@@ -30,3 +30,7 @@ https://github.com/Shiriow/EO-SimpleSaveEditor
 [file_selector](https://pub.dev/packages/file_selector)
 
 [file_picker](https://pub.dev/packages/file_picker)
+
+[convert](https://pub.dev/packages/convert)
+
+[google_fonts](https://pub.dev/packages/google_fonts)
