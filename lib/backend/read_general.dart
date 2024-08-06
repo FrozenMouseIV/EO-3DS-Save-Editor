@@ -31,6 +31,25 @@ var maxlevel = -1;
   var sSubSkillOffset = -1;
   var eSubSkillOffset = -1;
 
+//Equipment
+var weaponOffset = -1;
+var startSecondEquipmentOffset = -1;
+var endSecondEquipmentOffset = -1;
+var startThirdEquipmentOffset = -1;
+var endThirdEquipmentOffset = -1;
+var startFourthEquipmentOffset = -1;
+var endFourthEquipmentOffset = -1;
+
+List<int> weaponList = [];
+List<int> equipment2List1 = [];
+List<int> equipment2List2 = [];
+List<int> equipment3List1 = [];
+List<int> equipment3List2 = [];
+List<int> equipment4List1 = [];
+List<int> equipment4List2 = [];
+
+
+
 void setGame(keepGame){
   var game = getNameGame(keepGame);
   if(game == "MOS_GAME")
@@ -186,6 +205,14 @@ void setGame(keepGame){
       subclassOffset = 201;
       sSubSkillOffset = 447;
       eSubSkillOffset = 471;
+
+      weaponOffset = 204;
+      startSecondEquipmentOffset = 216;
+      endSecondEquipmentOffset = 217;
+      startThirdEquipmentOffset = 228;
+      endThirdEquipmentOffset = 229;
+      startFourthEquipmentOffset = 240;
+      endFourthEquipmentOffset = 241;
     }
     else if(game == "MO5_GAME"){
       maxlevel = 99;
@@ -257,6 +284,14 @@ var subclassOffsetR = subclassOffset;
 var sSubSkillOffsetR = sSubSkillOffset;
 var eSubSkillOffsetR = eSubSkillOffset;
 
+var weaponOffsetR = weaponOffset;
+var startSecondEquipmentOffsetR = startSecondEquipmentOffset;
+var endSecondEquipmentOffsetR = endSecondEquipmentOffset;
+var startThirdEquipmentOffsetR = startThirdEquipmentOffset;
+var endThirdEquipmentOffsetR = endThirdEquipmentOffset;
+var startFourthEquipmentOffsetR = startFourthEquipmentOffset;
+var endFourthEquipmentOffsetR = endFourthEquipmentOffset;
+
 var skillList = [];
 var skillListName = [];
 var classlist = [];
@@ -264,6 +299,8 @@ var currentsplist = [];
 var retiresplist = [];
 var subclasslist = [];
 var subskillList = [];
+
+var equipmentList = [];
 
 void decrypt(game) async {
 for (var i = 0; i < guildslots; i++){
@@ -295,6 +332,35 @@ for (var i = 0; i < guildslots; i++){
     subskillList.add(game.sublist(sSubSkillOffsetR, eSubSkillOffsetR));
     sSubSkillOffsetR += addOffset;
     eSubSkillOffsetR += addOffset;
+
+    decryptEquipment(
+      game[weaponOffsetR],
+      game[startSecondEquipmentOffsetR],
+      game[endSecondEquipmentOffsetR],
+      game[startThirdEquipmentOffsetR],
+      game[endThirdEquipmentOffsetR],
+      game[startFourthEquipmentOffsetR],
+      game[endFourthEquipmentOffsetR],
+    );
+
+    equipmentList.add([
+    weaponList[i],
+    equipment2List1[i],
+    equipment2List2[i],
+    equipment3List1[i],
+    equipment3List2[i],
+    equipment4List1[i],
+    equipment4List2[i],
+    ]);
+
+    weaponOffsetR += addOffset;
+    startSecondEquipmentOffsetR += addOffset;
+    endSecondEquipmentOffsetR += addOffset;
+    startThirdEquipmentOffsetR += addOffset;
+    endThirdEquipmentOffsetR += addOffset;
+    startFourthEquipmentOffsetR += addOffset;
+    endFourthEquipmentOffsetR += addOffset;
+
   }
 }
 
@@ -428,6 +494,14 @@ void saveFile(game) async{
     var save5 = sSubSkillOffset;
     var saveClass = classOffset;
     var saveSubClass = subclassOffset;
+    
+    var saveWeapon = weaponOffset;
+    var saveStartEquipment2 = startSecondEquipmentOffset;
+    var saveEndEquipment2 = endSecondEquipmentOffset;
+    var saveStartEquipment3 = startThirdEquipmentOffset;
+    var saveEndEquipment3 = endThirdEquipmentOffset;
+    var saveStartEquipment4 = startFourthEquipmentOffset;
+    var saveEndEquipment4 = endFourthEquipmentOffset;
 
 
     for (var i = 1; i < guildslots; i++){
@@ -449,7 +523,18 @@ void saveFile(game) async{
     game[saveClass] = classlist[idsave];
 
     game[saveSubClass] = subclasslist[idsave];
-//
+
+//check
+    game[saveWeapon] = weaponList[idsave];
+    game[saveStartEquipment2] = equipment2List1[idsave];
+    game[saveEndEquipment2] = equipment2List2[idsave];
+    game[saveStartEquipment3] = equipment3List1[idsave];
+    game[saveEndEquipment3] = equipment3List2[idsave];
+    game[saveStartEquipment4] = equipment4List1[idsave];
+    game[saveEndEquipment4] = equipment4List2[idsave];
+
+
+
         idsave += 1;
         save1 += addOffset;
         save2 += addOffset;
@@ -458,6 +543,14 @@ void saveFile(game) async{
         save5 += addOffset;
         saveClass += addOffset;
         saveSubClass += addOffset;
+
+        saveWeapon += addOffset;
+        saveStartEquipment2 += addOffset;
+        saveEndEquipment2 += addOffset;
+        saveStartEquipment3 += addOffset;
+        saveEndEquipment3 += addOffset;
+        saveStartEquipment4 += addOffset;
+        saveEndEquipment4 += addOffset;
     }
     //saving
   
@@ -583,4 +676,53 @@ Future<List<String>> returnClasses() async{
     listClasses.add(value);
   });
   return listClasses;
+}
+
+Future<List<String>> getEquipmentFuture(character) async{
+  List<String> hexList = equipmentList.expand((sublist) {
+  return sublist.map((item) => item.toRadixString(16).padLeft(2, '0').toUpperCase());
+  }).cast<String>().toList();
+
+return hexList;
+}
+
+List<String> getEquipment(character) {
+  
+  List<String> hexList = equipmentList.expand((sublist) {
+    return sublist.map((item) => item.toRadixString(16).padLeft(2, '0').toUpperCase());
+  }).cast<String>().toList();
+
+return hexList;
+}
+
+void setEquipment(hex1,hex2,hex3,hex4,hex5,hex6,hex7,character) {
+  weaponList[character] = int.parse(hex1, radix: 16);
+  equipment2List1[character] = int.parse(hex2, radix: 16);
+  equipment2List2[character] = int.parse(hex3, radix: 16);
+  equipment3List1[character] = int.parse(hex4, radix: 16);
+  equipment3List2[character] = int.parse(hex5, radix: 16);
+  equipment4List1[character] = int.parse(hex6, radix: 16);
+  equipment4List2[character] = int.parse(hex7, radix: 16);
+
+  List<int> equipment = [
+    int.parse(hex1, radix: 16),
+    int.parse(hex2, radix: 16),
+    int.parse(hex3, radix: 16),
+    int.parse(hex4, radix: 16),
+    int.parse(hex5, radix: 16),
+    int.parse(hex6, radix: 16),
+    int.parse(hex7, radix: 16),
+  ];
+
+  equipmentList[character] = equipment;
+}
+
+void decryptEquipment(hex1,hex2,hex3,hex4,hex5,hex6,hex7) {
+  weaponList.add(hex1);
+  equipment2List1.add(hex2);
+  equipment2List2.add(hex3);
+  equipment3List1.add(hex4);
+  equipment3List2.add(hex5);
+  equipment4List1.add(hex6);
+  equipment4List2.add(hex7);
 }

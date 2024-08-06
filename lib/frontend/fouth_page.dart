@@ -416,7 +416,6 @@ Widget build(BuildContext context) {
 Future<void> getSkillsAndMap(selectedName) async {
   List<String> skills = getSkills(selectedName);
   skills.asMap().entries.map((entry) {
-    // Your mapping logic here
   }).toList();
 }
 
@@ -425,5 +424,236 @@ Widget _buildTableSkills(option, selectedName, game) {
     return TableSkills(readsubskill(selectedName, game));
   } else {
     return TableSkills(readskill(selectedName, game));
+  }
+}
+
+class EquipmentPage extends StatelessWidget {
+  final List keepGame;
+  final int selectedName;
+  const EquipmentPage(this.keepGame, this.selectedName, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Select Equipment'),
+        automaticallyImplyLeading: false,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2, // 20% of the screen height
+              child: TableEquipment(getEquipmentFuture(selectedName)),
+            ),
+            const SizedBox(height: 20),
+            HexTable(getEquipment(selectedName), selectedName, keepGame),
+          ]
+        )
+      )
+    );
+  }
+}
+            
+class HexTable extends StatefulWidget {
+  final List<String> equipmentData;
+  final int selectedName;
+  final List keepGame;
+  const HexTable(this.equipmentData, this.selectedName, this.keepGame, {super.key});
+
+  @override
+  HexTableState createState() => HexTableState();
+}
+
+class HexTableState extends State<HexTable> {
+  List<String> hexNumbers = List.generate(256, (index) => index.toRadixString(16).padLeft(2, '0').toUpperCase());
+  late String selectedHex1;
+  late String selectedHex2;
+  late String selectedHex3;
+  late String selectedHex4;
+  late String selectedHex5;
+  late String selectedHex6;
+  late String selectedHex7;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedHex1 = widget.equipmentData[0];
+    selectedHex2 = widget.equipmentData[1];
+    selectedHex3 = widget.equipmentData[2];
+    selectedHex4 = widget.equipmentData[3];
+    selectedHex5 = widget.equipmentData[4];
+    selectedHex6 = widget.equipmentData[5];
+    selectedHex7 = widget.equipmentData[6];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        DataTable(
+          columns: const [
+            DataColumn(label: Text('Weapon hex')),
+            DataColumn(label: Text('Equipment 2 hex')),
+            DataColumn(label: Text('Equipment 3 hex')),
+            DataColumn(label: Text('Equipment 4 hex')),
+          ],
+          rows: [
+            DataRow(cells: [
+              DataCell(DropdownButton<String>(
+                value: selectedHex1,
+                onChanged: (newValue) {
+                  setState(() {
+                    selectedHex1 = newValue!;
+                  });
+                },
+                items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )),
+              DataCell(Row(
+                children: [
+                  DropdownButton<String>(
+                    value: selectedHex2,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex2 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  DropdownButton<String>(
+                    value: selectedHex3,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex3 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              )),
+              DataCell(Row(
+                children: [
+                  DropdownButton<String>(
+                    value: selectedHex4,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex4 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  DropdownButton<String>(
+                    value: selectedHex5,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex5 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              )),
+              DataCell(Row(
+                children: [
+                  DropdownButton<String>(
+                    value: selectedHex6,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex6 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  DropdownButton<String>(
+                    value: selectedHex7,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedHex7 = newValue!;
+                      });
+                    },
+                    items: hexNumbers.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              )),
+            ]),
+          ],
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setEquipment(selectedHex1, selectedHex2, selectedHex3, selectedHex4, selectedHex5, selectedHex6, selectedHex7, widget.selectedName);
+            final navigator = Navigator.of(context);
+            String game = getNameGame(widget.keepGame);
+            switch (game) {
+              case 'MOS_GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => NexusPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO1RGAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Untold1Page(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO2RGAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Untold2Page(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MOR4GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => IVPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO5_GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => VPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+            }
+          },
+          child: const Text('Submit'),
+        ),
+      ],
+    );
   }
 }

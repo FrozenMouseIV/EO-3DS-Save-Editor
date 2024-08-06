@@ -98,6 +98,50 @@ class TableSkills extends StatelessWidget {
   }
 }
 
+class TableEquipment extends StatelessWidget {
+  final Future<List<String>> equipmentData;
+  const TableEquipment(this.equipmentData, {super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<String>>(
+      future: equipmentData,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.length < 7) {
+          return const Center(child: Text('No data or insufficient data'));
+        } else {
+          List<String> data = snapshot.data!;
+          return Table(
+            border: TableBorder.all(),
+            children: [
+              const TableRow(
+                children: [
+                  Text('Weapon', textAlign: TextAlign.center),
+                  Text('Equipment 2', textAlign: TextAlign.center),
+                  Text('Equipment 3', textAlign: TextAlign.center),
+                  Text('Equipment 4', textAlign: TextAlign.center),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Text(data[0].toString(), textAlign: TextAlign.center),
+                  Text('${data[1]}, ${data[2]}', textAlign: TextAlign.center),
+                  Text('${data[3]}, ${data[4]}', textAlign: TextAlign.center),
+                  Text('${data[5]}, ${data[6]}', textAlign: TextAlign.center),
+                ],
+              ),
+            ],
+          );
+        }
+      },
+    );
+  }
+}
+
 class DisplayClasses extends StatelessWidget{
   final Future<List<String>> gameData;
   const DisplayClasses(this.gameData, {super.key});
@@ -364,6 +408,11 @@ class DropDownListState extends State<DropDownNameList> {
                 },
               );
             }
+          }
+          else if (selectedName != null && widget.option == 9){
+            navigator.push(
+                  MaterialPageRoute(builder: (context) => EquipmentPage(widget.keepGame, selectedName!)),
+                );
           }
           else {
               showDialog(

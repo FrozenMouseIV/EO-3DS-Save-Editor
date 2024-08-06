@@ -463,6 +463,16 @@ class IVPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => ItemPage(keepGame),
+                  )
+                );
+              },
+              child: const Text('Items'),
+            ),
+            ElevatedButton(
+              onPressed: () {
                 exit(0);
               },
               child: const Text('Exit'),

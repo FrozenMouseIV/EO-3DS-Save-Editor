@@ -133,6 +133,21 @@ class NamePage extends StatelessWidget {
                   }
                 },
               ),
+              if(option == 9)
+                  FutureBuilder<List<String>>(
+                future: getNames(keepGame),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    return DropDownNameList(snapshot.data!, -1, keepGame, option);
+                  } else {
+                    return const Text('No data available');
+                  }
+                },
+              ),
             ]
             
             else if(getNameGame(keepGame) == "MO2RGAME")...[
@@ -279,4 +294,56 @@ Color _getColor(game) {
       return Colors.blueGrey;
   }
   return Colors.black;
+}
+
+class ItemPage extends StatelessWidget {
+  final List keepGame;
+  const ItemPage(this.keepGame,  {super.key});
+  static int itemOption = 0;
+  
+  
+  @override
+  //TODO add all butttons
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Items'),
+          automaticallyImplyLeading: true,
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    itemOption = 9;
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => NamePage(keepGame, itemOption),
+                      ),
+                    );
+                  },
+                  child: const Text('Edit character equipment'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    // Add your onPressed code here
+                  },
+                  child: const Text('Edit bag items'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    // Add your onPressed code here
+                  },
+                  child: const Text('Edit stored items'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 }
