@@ -257,6 +257,21 @@ class NamePage extends StatelessWidget {
                   }
                 },
               ),
+              if(option == 9)
+                  FutureBuilder<List<String>>(
+                future: getListEO2U(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    return DropDownNameList(snapshot.data!, -1, keepGame, option);
+                  } else {
+                    return const Text('No data available');
+                  }
+                },
+              ),
             ]
           ]
       ),
@@ -304,7 +319,6 @@ class ItemPage extends StatelessWidget {
   
   
   @override
-  //TODO add all butttons
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(

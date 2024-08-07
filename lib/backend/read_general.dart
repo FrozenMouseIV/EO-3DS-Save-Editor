@@ -89,6 +89,141 @@ void setGame(keepGame){
       17: "Arcanist",
       18: "Farmer",
     };
+
+    bagStartOffset =[
+      22596,
+      22600,
+      22604,
+      22608,
+      22612,
+      22616,
+      22620,
+      22624,
+      22628,
+      22632,
+      22636,
+      22640,
+      22644,
+      22648,
+      22652,
+      22656,
+      22660,
+      22664,
+      22668,
+      22672,
+      22676,
+      22680,
+      22684,
+      22688,
+      22692,
+      22696,
+      22700,
+      22704,
+      22708,
+      22712,
+      22716,
+      22720,
+      22724,
+      22728,
+      22732,
+      22736,
+      22740,
+      22744,
+      22748,
+      22752,
+      22756,
+      22760,
+      22764,
+      22768,
+      22772,
+      22776,
+      22780,
+      22784,
+      22788,
+      22792,
+      22796,
+      22800,
+      22804,
+      22808,
+      22812,
+      22816,
+      22820,
+      22824,
+      22828,
+      22832
+    ];
+
+    bagEndOffset = [
+      22597,
+      22601,
+      22605,
+      22609,
+      22613,
+      22617,
+      22621,
+      22625,
+      22629,
+      22633,
+      22637,
+      22641,
+      22645,
+      22649,
+      22653,
+      22657,
+      22661,
+      22665,
+      22669,
+      22673,
+      22677,
+      22681,
+      22685,
+      22689,
+      22693,
+      22697,
+      22701,
+      22705,
+      22709,
+      22713,
+      22717,
+      22721,
+      22725,
+      22729,
+      22733,
+      22737,
+      22741,
+      22745,
+      22749,
+      22753,
+      22757,
+      22761,
+      22765,
+      22769,
+      22773,
+      22777,
+      22781,
+      22785,
+      22789,
+      22793,
+      22797,
+      22801,
+      22805,
+      22809,
+      22813,
+      22817,
+      22821,
+      22825,
+      22829,
+      22833
+    ];
+      
+    weaponOffset = 348;
+    startSecondEquipmentOffset = 352;
+    endSecondEquipmentOffset = 353;
+    startThirdEquipmentOffset = 356;
+    endThirdEquipmentOffset = 357;
+    startFourthEquipmentOffset = 360;
+    endFourthEquipmentOffset = 361;
+
     skilMult = 27;
     skilAdd = 2;
     skillNameFile = 'lib/backend/skills/eox.txt';
@@ -125,6 +260,141 @@ void setGame(keepGame){
         9: "Highlander",
         10: "Gunner",
       };
+
+      bagStartOffset = [
+        12644,
+        12656,
+        12668,
+        12680,
+        12692,
+        12704,
+        12716,
+        12728,
+        12740,
+        12752,
+        12764,
+        12776,
+        12788,
+        12800,
+        12812,
+        12824,
+        12836,
+        12848,
+        12860,
+        12872,
+        12884,
+        12896,
+        12908,
+        12920,
+        12932,
+        12944,
+        12956,
+        12968,
+        12980,
+        12992,
+        13004,
+        13016,
+        13028,
+        13040,
+        13052,
+        13064,
+        13076,
+        13088,
+        13100,
+        13112,
+        13124,
+        13136,
+        13148,
+        13160,
+        13172,
+        13184,
+        13196,
+        13208,
+        13220,
+        13232,
+        13244,
+        13256,
+        13268,
+        13280,
+        13292,
+        13304,
+        13316,
+        13328,
+        13340,
+        13352
+      ];
+      
+      bagEndOffset =[
+        12645,
+        12657,
+        12669,
+        12681,
+        12693,
+        12705,
+        12717,
+        12729,
+        12741,
+        12753,
+        12765,
+        12777,
+        12789,
+        12801,
+        12813,
+        12825,
+        12837,
+        12849,
+        12861,
+        12873,
+        12885,
+        12897,
+        12909,
+        12921,
+        12933,
+        12945,
+        12957,
+        12969,
+        12981,
+        12993,
+        13005,
+        13017,
+        13029,
+        13041,
+        13053,
+        13065,
+        13077,
+        13089,
+        13101,
+        13113,
+        13125,
+        13137,
+        13149,
+        13161,
+        13173,
+        13185,
+        13197,
+        13209,
+        13221,
+        13233,
+        13245,
+        13257,
+        13269,
+        13281,
+        13293,
+        13305,
+        13317,
+        13329,
+        13341,
+        13353
+      ];
+
+      weaponOffset = 2132;
+      startSecondEquipmentOffset = 2144;
+      endSecondEquipmentOffset = 2145;
+      startThirdEquipmentOffset = 2156;
+      endThirdEquipmentOffset = 2157;
+      startFourthEquipmentOffset = 2168;
+      endFourthEquipmentOffset = 2169;
+
       skilMult = 30;
       skilAdd = 6;
       skillNameFile = 'lib/backend/skills/eou.txt';
@@ -165,6 +435,141 @@ void setGame(keepGame){
         13: "Highlander",  
         14: "Fafnir",
       };
+
+      bagStartOffset =[
+        8784,
+        8788,
+        8792,
+        8796,
+        8800,
+        8804,
+        8808,
+        8812,
+        8816,
+        8820,
+        8824,
+        8828,
+        8832,
+        8836,
+        8840,
+        8844,
+        8848,
+        8852,
+        8856,
+        8860,
+        8864,
+        8868,
+        8872,
+        8876,
+        8880,
+        8884,
+        8888,
+        8892,
+        8896,
+        8900,
+        8904,
+        8908,
+        8912,
+        8916,
+        8920,
+        8924,
+        8928,
+        8932,
+        8936,
+        8940,
+        8944,
+        8948,
+        8952,
+        8956,
+        8960,
+        8964,
+        8968,
+        8972,
+        8976,
+        8980,
+        8984,
+        8988,
+        8992,
+        8996,
+        9000,
+        9004,
+        9008,
+        9012,
+        9016,
+        9020,
+      ];
+
+      bagEndOffset =[
+        8785,
+        8789,
+        8793,
+        8797,
+        8801,
+        8805,
+        8809,
+        8813,
+        8817,
+        8821,
+        8825,
+        8829,
+        8833,
+        8837,
+        8841,
+        8845,
+        8849,
+        8853,
+        8857,
+        8861,
+        8865,
+        8869,
+        8873,
+        8877,
+        8881,
+        8885,
+        8889,
+        8893,
+        8897,
+        8901,
+        8905,
+        8909,
+        8913,
+        8917,
+        8921,
+        8925,
+        8929,
+        8933,
+        8937,
+        8941,
+        8945,
+        8949,
+        8953,
+        8957,
+        8961,
+        8965,
+        8969,
+        8973,
+        8977,
+        8981,
+        8985,
+        8989,
+        8993,
+        8997,
+        9001,
+        9005,
+        9009,
+        9013,
+        9017,
+        9021,
+      ];
+
+      weaponOffset = 1720;
+      startSecondEquipmentOffset = 1724;
+      endSecondEquipmentOffset = 1725;
+      startThirdEquipmentOffset = 1728;
+      endThirdEquipmentOffset = 1729;
+      startFourthEquipmentOffset = 1732;
+      endFourthEquipmentOffset = 1733;
+
       skilMult = 30;
       skilAdd = 5;
       skillNameFile = 'lib/backend/skills/eo2u.txt';
@@ -387,6 +792,141 @@ void setGame(keepGame){
         28: "Spirit Evoker",
         29: "Spirit Broker",
       };
+
+      bagStartOffset =[
+        10972,
+        10976,
+        10980,
+        10984,
+        10988,
+        10992,
+        10996,
+        11000,
+        11004,
+        11008,
+        11012,
+        11016,
+        11020,
+        11024,
+        11028,
+        11032,
+        11036,
+        11040,
+        11044,
+        11048,
+        11052,
+        11056,
+        11060,
+        11064,
+        11068,
+        11072,
+        11076,
+        11080,
+        11084,
+        11088,
+        11092,
+        11096,
+        11100,
+        11104,
+        11108,
+        11112,
+        11116,
+        11120,
+        11124,
+        11128,
+        11132,
+        11136,
+        11140,
+        11144,
+        11148,
+        11152,
+        11156,
+        11160,
+        11164,
+        11168,
+        11172,
+        11176,
+        11180,
+        11184,
+        11188,
+        11192,
+        11196,
+        11200,
+        11204,
+        11208
+      ];
+
+      bagEndOffset = [
+        10973,
+        10977,
+        10981,
+        10985,
+        10989,
+        10993,
+        10997,
+        11001,
+        11005,
+        11009,
+        11013,
+        11017,
+        11021,
+        11025,
+        11029,
+        11033,
+        11037,
+        11041,
+        11045,
+        11049,
+        11053,
+        11057,
+        11061,
+        11065,
+        11069,
+        11073,
+        11077,
+        11081,
+        11085,
+        11089,
+        11093,
+        11097,
+        11101,
+        11105,
+        11109,
+        11113,
+        11117,
+        11121,
+        11125,
+        11129,
+        11133,
+        11137,
+        11141,
+        11145,
+        11149,
+        11153,
+        11157,
+        11161,
+        11165,
+        11169,
+        11173,
+        11177,
+        11181,
+        11185,
+        11189,
+        11193,
+        11197,
+        11201,
+        11205,
+        11209,
+      ];
+
+      weaponOffset = 340;
+      startSecondEquipmentOffset = 344;
+      endSecondEquipmentOffset = 345;
+      startThirdEquipmentOffset = 348;
+      endThirdEquipmentOffset = 349;
+      startFourthEquipmentOffset = 352;
+      endFourthEquipmentOffset = 353;
+
       skilMult = 20;
       skilAdd = 2;
       skillNameFile = 'lib/backend/skills/eo5.txt';
@@ -429,7 +969,7 @@ var retiresplist = [];
 var subclasslist = [];
 var subskillList = [];
 
-var equipmentList = [];
+List<List<int>> equipmentList = [];
 var bagListStart = [];
 var bagListEnd = [];
 
@@ -483,12 +1023,6 @@ for (var i = 0; i < guildslots; i++){
     equipment4List1[i],
     equipment4List2[i],
     ]);
-    bagListStart.add(
-      game[bagStartOffset[i]]
-    );
-    bagListEnd.add(
-      game[bagEndOffset[i]]
-    );
 
     weaponOffsetR += addOffset;
     startSecondEquipmentOffsetR += addOffset;
@@ -498,6 +1032,14 @@ for (var i = 0; i < guildslots; i++){
     startFourthEquipmentOffsetR += addOffset;
     endFourthEquipmentOffsetR += addOffset;
 
+  }
+  for(var i = 0; i < 30; i++){
+    bagListStart.add(
+      game[bagStartOffset[i]]
+    );
+    bagListEnd.add(
+      game[bagEndOffset[i]]
+    );
   }
 }
 
@@ -665,7 +1207,6 @@ void saveFile(game) async{
 
     game[saveSubClass] = subclasslist[idsave];
 
-//check
     game[saveWeapon] = weaponList[idsave];
     game[saveStartEquipment2] = equipment2List1[idsave];
     game[saveEndEquipment2] = equipment2List2[idsave];
@@ -824,20 +1365,19 @@ Future<List<String>> returnClasses() async{
 }
 
 Future<List<String>> getEquipmentFuture(character) async{
-  List<String> hexList = equipmentList.expand((sublist) {
-  return sublist.map((item) => item.toRadixString(16).padLeft(2, '0').toUpperCase());
-  }).cast<String>().toList();
-
-return hexList;
+  List<String> hexList = [];
+  for (var item in equipmentList[character]) {
+    hexList.add(item.toRadixString(16).padLeft(2, '0').toUpperCase());
+  }
+  return hexList;
 }
 
 List<String> getEquipment(character) {
-  
-  List<String> hexList = equipmentList.expand((sublist) {
-    return sublist.map((item) => item.toRadixString(16).padLeft(2, '0').toUpperCase());
-  }).cast<String>().toList();
-
-return hexList;
+  List<String> hexList = [];
+  for (var item in equipmentList[character]) {
+    hexList.add(item.toRadixString(16).padLeft(2, '0').toUpperCase());
+  }
+  return hexList;
 }
 
 void setEquipment(hex1,hex2,hex3,hex4,hex5,hex6,hex7,character) {

@@ -108,9 +108,6 @@ if (context.mounted) {
 }
     }
     else{
-      setState(() {
-      message = ("Not an 3DS EO save");
-          });
     }
   }
     Future<void> comparePlatformState(BuildContext context) async {

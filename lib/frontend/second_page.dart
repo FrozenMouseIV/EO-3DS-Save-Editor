@@ -123,6 +123,16 @@ class NexusPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => ItemPage(keepGame),
+                  )
+                );
+              },
+              child: const Text('Items'),
+            ),
+            ElevatedButton(
+              onPressed: () {
                 exit(0);
               },
               child: const Text('Exit'),
@@ -229,6 +239,16 @@ class Untold1Page extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => ItemPage(keepGame),
+                  )
+                );
+              },
+              child: const Text('Items'),
+            ),
+            ElevatedButton(
+              onPressed: () {
                 exit(0);
               },
               child: const Text('Exit'),
@@ -332,6 +352,16 @@ class Untold2Page extends StatelessWidget {
                 );
               },
               child: const Text('Change class'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => ItemPage(keepGame),
+                  )
+                );
+              },
+              child: const Text('Items'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -576,6 +606,16 @@ class VPage extends StatelessWidget {
                 );
               },
               child: const Text('Change class'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => ItemPage(keepGame),
+                  )
+                );
+              },
+              child: const Text('Items'),
             ),
             ElevatedButton(
               onPressed: () {
