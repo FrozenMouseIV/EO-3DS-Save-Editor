@@ -39,6 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String message = "Insert an Etrian Odyssey 3DS save.";
   String message2 = "Compare two saves";
+  String message3 = "Edit manually hexadecimal values";
     
     Future<void> initPlatformState(BuildContext context) async {
     const XTypeGroup typeGroup = XTypeGroup(
@@ -131,6 +132,24 @@ if (context.mounted) {
       }
     }
 
+    Future<void> insertPlatformState(BuildContext context) async {
+      FilePickerResult? result = await FilePicker.platform.pickFiles();
+      if (result != null) {
+        File file = File(result.files.single.path!);
+        String file1Path = file.path;
+        String fileName =  await read(file1Path);
+          if (context.mounted) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+            builder: (context) => InsertPage(file, file1Path, fileName),
+            ),
+          );
+          }
+        }
+        else {
+        }
+      } 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,6 +176,16 @@ if (context.mounted) {
                 _MyHomePageState().comparePlatformState(context);
               },
               child: const Text('Compare') 
+            ),
+            const SizedBox(height: 50),
+            Text(
+              message3,
+            ),
+            TextButton(
+              onPressed: () {
+                _MyHomePageState().insertPlatformState(context);
+              },
+              child: const Text('Insert hex') 
             ),
           ],
         ),

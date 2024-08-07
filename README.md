@@ -1,5 +1,5 @@
 # EO-3DS-Save-Editor
-A save editor for the mainline 3DS Etrian Odyssey games that lets you edit levels, skill levels, respec, change class, change subclass, add/remove members from the active party so you can run a 6 people party or change your items.
+A save editor for the mainline 3DS Etrian Odyssey games that lets you edit levels, skill levels, respec, change class, change subclass, add/remove members from the active party so you can run a 6 people party or change your items. Also, a simple hex editor for EO saves.
 
 When changing levels, rest your characters in-game right away.
 
