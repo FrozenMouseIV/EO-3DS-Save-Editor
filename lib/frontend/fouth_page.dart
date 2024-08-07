@@ -657,3 +657,135 @@ class HexTableState extends State<HexTable> {
     );
   }
 }
+
+class BagPage extends StatelessWidget {
+  final List keepGame;
+  final int selectedName;
+  const BagPage(this.keepGame, this.selectedName, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Bag items')),
+        body: HexDropdownTable(keepGame)
+      ),
+    );
+  }
+}
+
+
+class HexDropdownTable extends StatefulWidget {
+  final List keepGame;
+  const HexDropdownTable(this.keepGame, {super.key});
+
+  @override
+  HexDropdownTableState createState() => HexDropdownTableState();
+}
+
+class HexDropdownTableState extends State<HexDropdownTable> {
+  static const int numRows = 30;
+  
+  final List<String> hexValues = List.generate(256, (index) => index.toRadixString(16).padLeft(2, '0').toUpperCase());
+
+  late List<String> selectedValues1;
+  late List<String> selectedValues2;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValues1 = getBagStart();
+    selectedValues2 = getBagEnd();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: numRows,
+            itemBuilder: (context, rowIndex) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: selectedValues1[rowIndex],
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedValues1[rowIndex] = newValue!;
+                        });
+                      },
+                      items: hexValues.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: selectedValues2[rowIndex],
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedValues2[rowIndex] = newValue!;
+                        });
+                      },
+                      items: hexValues.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setItemBag(selectedValues1, selectedValues2);
+            final navigator = Navigator.of(context);
+            String game = getNameGame(widget.keepGame);
+            switch (game) {
+              case 'MOS_GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => NexusPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO1RGAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Untold1Page(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO2RGAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Untold2Page(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MOR4GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => IVPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+              case 'MO5_GAME':
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => VPage(widget.keepGame)),
+                  ModalRoute.withName('MyHomePage')
+                );
+                break;
+            }
+          },
+          child: const Text('Submit'),
+        ),
+      ],
+    );
+  }
+}

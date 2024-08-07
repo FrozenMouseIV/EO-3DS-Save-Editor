@@ -1,6 +1,7 @@
 import 'package:eo_3ds_save_editor/backend/open.dart';
 import 'package:eo_3ds_save_editor/backend/read_general.dart';
 import 'package:eo_3ds_save_editor/frontend/display_utilities.dart';
+import 'package:eo_3ds_save_editor/frontend/fouth_page.dart';
 import 'package:flutter/material.dart';
 
 class NamePage extends StatelessWidget {
@@ -329,18 +330,14 @@ class ItemPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // Add your onPressed code here
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => BagPage(keepGame, itemOption),
+                      ),
+                    );
                   },
                   child: const Text('Edit bag items'),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your onPressed code here
-                  },
-                  child: const Text('Edit stored items'),
-                ),
-              ],
+                ),              ],
             ),
           ),
         ),

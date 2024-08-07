@@ -40,6 +40,9 @@ var endThirdEquipmentOffset = -1;
 var startFourthEquipmentOffset = -1;
 var endFourthEquipmentOffset = -1;
 
+var bagStartOffset = [];
+var bagEndOffset = [];
+
 List<int> weaponList = [];
 List<int> equipment2List1 = [];
 List<int> equipment2List2 = [];
@@ -213,6 +216,132 @@ void setGame(keepGame){
       endThirdEquipmentOffset = 229;
       startFourthEquipmentOffset = 240;
       endFourthEquipmentOffset = 241;
+
+      bagStartOffset = [
+        11616,
+        11628,
+        11640,
+        11652,
+        11664,
+        11676,
+        11688,
+        11700,
+        11712,
+        11724,
+        11736,
+        11748,
+        11760,
+        11772,
+        11784,
+        11796,
+        11808,
+        11820,
+        11832,
+        11844,
+        11856,
+        11868,
+        11880,
+        11892,
+        11904,
+        11916,
+        11928,
+        11940,
+        11952,
+        11964,
+        11976,
+        11988,
+        12000,
+        12012,
+        12024,
+        12036,
+        12048,
+        12060,
+        12072,
+        12084,
+        12096,
+        12108,
+        12120,
+        12132,
+        12144,
+        12156,
+        12168,
+        12180,
+        12192,
+        12204,
+        12216,
+        12228,
+        12240,
+        12252,
+        12264,
+        12276,
+        12288,
+        12300,
+        12312,
+        12324,
+      ];
+      bagEndOffset= [
+        11617,
+        11629,
+        11641,
+        11653,
+        11665,
+        11677,
+        11689,
+        11701,
+        11713,
+        11725,
+        11737,
+        11749,
+        11761,
+        11773,
+        11785,
+        11797,
+        11809,
+        11821,
+        11833,
+        11845,
+        11857,
+        11869,
+        11881,
+        11893,
+        11905,
+        11917,
+        11929,
+        11941,
+        11953,
+        11965,
+        11977,
+        11989,
+        12001,
+        12013,
+        12025,
+        12037,
+        12049,
+        12061,
+        12073,
+        12085,
+        12097,
+        12109,
+        12121,
+        12133,
+        12145,
+        12157,
+        12169,
+        12181,
+        12193,
+        12205,
+        12217,
+        12229,
+        12241,
+        12253,
+        12265,
+        12277,
+        12289,
+        12301,
+        12313,
+        12325,
+      ];
+
     }
     else if(game == "MO5_GAME"){
       maxlevel = 99;
@@ -301,6 +430,8 @@ var subclasslist = [];
 var subskillList = [];
 
 var equipmentList = [];
+var bagListStart = [];
+var bagListEnd = [];
 
 void decrypt(game) async {
 for (var i = 0; i < guildslots; i++){
@@ -352,6 +483,12 @@ for (var i = 0; i < guildslots; i++){
     equipment4List1[i],
     equipment4List2[i],
     ]);
+    bagListStart.add(
+      game[bagStartOffset[i]]
+    );
+    bagListEnd.add(
+      game[bagEndOffset[i]]
+    );
 
     weaponOffsetR += addOffset;
     startSecondEquipmentOffsetR += addOffset;
@@ -503,6 +640,10 @@ void saveFile(game) async{
     var saveStartEquipment4 = startFourthEquipmentOffset;
     var saveEndEquipment4 = endFourthEquipmentOffset;
 
+    var saveBagStart = bagStartOffset;
+    var saveBagEnd = bagEndOffset;
+
+
 
     for (var i = 1; i < guildslots; i++){
 //check        
@@ -534,7 +675,6 @@ void saveFile(game) async{
     game[saveEndEquipment4] = equipment4List2[idsave];
 
 
-
         idsave += 1;
         save1 += addOffset;
         save2 += addOffset;
@@ -551,6 +691,11 @@ void saveFile(game) async{
         saveEndEquipment3 += addOffset;
         saveStartEquipment4 += addOffset;
         saveEndEquipment4 += addOffset;
+
+    }
+    for (var i = 0; i < 30; i++){
+      game[saveBagStart[i]] = bagListStart[i];
+      game[saveBagEnd[i]] = bagListEnd[i];
     }
     //saving
   
@@ -725,4 +870,20 @@ void decryptEquipment(hex1,hex2,hex3,hex4,hex5,hex6,hex7) {
   equipment3List2.add(hex5);
   equipment4List1.add(hex6);
   equipment4List2.add(hex7);
+}
+
+List<String> getBagStart(){
+  return bagListStart.map((number) => number.toRadixString(16).padLeft(2, '0').toUpperCase()).toList().cast<String>();
+}
+
+List<String> getBagEnd(){
+    return bagListEnd.map((number) => number.toRadixString(16).padLeft(2, '0').toUpperCase()).toList().cast<String>();
+}
+void setItemBag(selectedValuesStart, selectedValuesEnd){
+  for(var i = 0; i< 30; i++)
+  {  
+    bagListStart[i] = int.parse(selectedValuesStart[i], radix: 16);
+    bagListEnd[i] = int.parse(selectedValuesEnd[i], radix: 16);
+  }
+  
 }
